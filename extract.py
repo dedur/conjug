@@ -1,42 +1,42 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # Verbs extract conjug from GT input file
 # Output conjug to tab delimeted db file
 # Name: dedur@rumantsch.ch
-# Date: 31.07.2015
+# Date: 09.01.2016
 
 from string import *
 import sys
 
-def output_rec(r):
+def output_rec(nr, r, f):
+    f.write('%s\t' % nr)
     tri = r[0]
-    print('%s' % (tri[0]), end="")
+    f.write('%s' % (tri[0]))
     for i in range(1,37):
 	    tri = r[i]
 	    if len(tri) != 3:
 	    	print("***error*** ", r[i])
 	    else:
-	    	print('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]), end="")
+	    	f.write('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]))
     tri = r[37]
-    print('\t%s\t%s' % (tri[1],tri[2]), end="")
+    f.write('\t%s\t%s' % (tri[1],tri[2]))
     tri = r[38]
-    print('\t%s\t%s' % (tri[1],tri[2]), end="")
+    f.write('\t%s\t%s' % (tri[1],tri[2]))
     tri = r[39]
-    print('\t%s\t%s' % (tri[1],tri[2]), end="")
+    f.write('\t%s\t%s' % (tri[1],tri[2]))
     tri = r[40]
-    print('\t%s\t%s' % (tri[1],tri[2]), end="")
+    f.write('\t%s\t%s' % (tri[1],tri[2]))
     tri = r[41]
-    print('\t%s' % tri[1], end="")
+    f.write('\t%s' % tri[1])
     tri = r[42]
-    print('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]))
+    f.write('\t%s\t%s\t%s\n' % (tri[0],tri[1],tri[2]))
 
 
 if __name__ == '__main__':
-    fln=open("../data/verbs_va.txt", mode='r', encoding="utf-8")
-    lines=fln.readlines()
+    f_in=open("../data/verbs_va.txt", mode='r', encoding="utf-8")
+    lines=f_in.readlines()
     print("  ", len(lines), "lines read.")
-    sys.stdout = open('verbs_va.txt', 'w', encoding="utf-8")
+    f_out = open('verbs_va.txt', 'w', encoding="utf-8")
 
     empty_lns = set([2, 9, 16, 23, 30, 37, 44, 49, 51])
     ln_nr = 0
@@ -52,8 +52,9 @@ if __name__ == '__main__':
                 conjug.append(ln.split('\t'))
         else:
             # last line of conjugation reached
-            print(cnt, "\t", end="")
-            output_rec(conjug)
+            output_rec(cnt, conjug, f_out)
             ln_nr = 0
             conjug = []
             cnt += 1
+    f_in.close()
+    f_out.close()
