@@ -11,32 +11,32 @@ import sys
 
 def output_rec(r):
     tri = r[0]
-    print '%s' % (tri[0]),
+    print('%s' % (tri[0]), end="")
     for i in range(1,37):
 	    tri = r[i]
 	    if len(tri) != 3:
-	    	print "***error*** ", r[i]
+	    	print("***error*** ", r[i])
 	    else:
-	    	print '\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]),
+	    	print('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]), end="")
     tri = r[37]
-    print '\t%s\t%s' % (tri[1],tri[2]),
+    print('\t%s\t%s' % (tri[1],tri[2]), end="")
     tri = r[38]
-    print '\t%s\t%s' % (tri[1],tri[2]),
+    print('\t%s\t%s' % (tri[1],tri[2]), end="")
     tri = r[39]
-    print '\t%s\t%s' % (tri[1],tri[2]),
+    print('\t%s\t%s' % (tri[1],tri[2]), end="")
     tri = r[40]
-    print '\t%s\t%s' % (tri[1],tri[2]),
+    print('\t%s\t%s' % (tri[1],tri[2]), end="")
     tri = r[41]
-    print '\t%s' % tri[1],
+    print('\t%s' % tri[1], end="")
     tri = r[42]
-    print '\t%s\t%s\t%s' % (tri[0],tri[1],tri[2])
+    print('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]))
 
 
 if __name__ == '__main__':
-    fln=open("verbs_va_xls.txt", mode='r')
+    fln=open("../data/verbs_va.txt", mode='r', encoding="utf-8")
     lines=fln.readlines()
-    print "  ", len(lines), "lines read."
-    sys.stdout = open('verbs_va.txt', 'w')
+    print("  ", len(lines), "lines read.")
+    sys.stdout = open('verbs_va.txt', 'w', encoding="utf-8")
 
     empty_lns = set([2, 9, 16, 23, 30, 37, 44, 49, 51])
     ln_nr = 0
@@ -52,7 +52,7 @@ if __name__ == '__main__':
                 conjug.append(ln.split('\t'))
         else:
             # last line of conjugation reached
-            print cnt, "\t",
+            print(cnt, "\t", end="")
             output_rec(conjug)
             ln_nr = 0
             conjug = []
