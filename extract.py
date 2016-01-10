@@ -3,7 +3,7 @@
 # Verbs extract conjug from GT input file
 # Output conjug to tab delimeted db file
 # Name: dedur@rumantsch.ch
-# Date: 09.01.2016
+# Date: 10.01.2016
 
 def output_rec(nr, r, f):
     f.write('%s\t' % nr)
@@ -14,19 +14,19 @@ def output_rec(nr, r, f):
 	    if len(tri) != 3:
 	    	print("***error*** ", r[i])
 	    else:
-	    	f.write('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]))
+	    	f.write('\t%s\t%s%s' % (tri[0],tri[1],tri[2]))
     tri = r[37] # pp_msg 
-    f.write('\t%s\t%s' % (tri[1],tri[2]))
+    f.write('\t%s%s' % (tri[1],tri[2]))
     tri = r[38] # pp_mpl
-    f.write('\t%s\t%s' % (tri[1],tri[2]))
+    f.write('\t%s%s' % (tri[1],tri[2]))
     tri = r[39] # pp_fsg
-    f.write('\t%s\t%s' % (tri[1],tri[2]))
+    f.write('\t%s%s' % (tri[1],tri[2]))
     tri = r[40] # pp_fpl
-    f.write('\t%s\t%s' % (tri[1],tri[2]))
+    f.write('\t%s%s' % (tri[1],tri[2]))
     tri = r[41] # aux_prf
     f.write('\t%s' % tri[1])
     tri = r[42] # gerundi
-    f.write('\t%s\t%s\t%s\n' % (tri[0],tri[1],tri[2]))
+    f.write('\t%s\t%s%s\n' % (tri[0],tri[1],tri[2]))
 
 
 if __name__ == '__main__':
