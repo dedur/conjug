@@ -5,12 +5,9 @@
 # Name: dedur@rumantsch.ch
 # Date: 09.01.2016
 
-from string import *
-import sys
-
 def output_rec(nr, r, f):
     f.write('%s\t' % nr)
-    tri = r[0]
+    tri = r[0] # infinitiv
     f.write('%s' % (tri[0]))
     for i in range(1,37):
 	    tri = r[i]
@@ -18,17 +15,17 @@ def output_rec(nr, r, f):
 	    	print("***error*** ", r[i])
 	    else:
 	    	f.write('\t%s\t%s\t%s' % (tri[0],tri[1],tri[2]))
-    tri = r[37]
+    tri = r[37] # pp_msg 
     f.write('\t%s\t%s' % (tri[1],tri[2]))
-    tri = r[38]
+    tri = r[38] # pp_mpl
     f.write('\t%s\t%s' % (tri[1],tri[2]))
-    tri = r[39]
+    tri = r[39] # pp_fsg
     f.write('\t%s\t%s' % (tri[1],tri[2]))
-    tri = r[40]
+    tri = r[40] # pp_fpl
     f.write('\t%s\t%s' % (tri[1],tri[2]))
-    tri = r[41]
+    tri = r[41] # aux_prf
     f.write('\t%s' % tri[1])
-    tri = r[42]
+    tri = r[42] # gerundi
     f.write('\t%s\t%s\t%s\n' % (tri[0],tri[1],tri[2]))
 
 
@@ -45,13 +42,10 @@ if __name__ == '__main__':
     for line in lines:
         ln_nr += 1
         if ln_nr < 53:
-
             ln = line.rstrip('\n')
-            # if not((ln_nr==2) or (ln_nr==9) or (ln_nr==16) or (ln_nr==23) or (ln_nr==30) or (ln_nr==37) or (ln_nr==44) or (ln_nr==49) or (ln_nr==51)):
-            if not empty_lns.__contains__(ln_nr):
+            if not empty_lns.__contains__(ln_nr): # use only lines containing infos
                 conjug.append(ln.split('\t'))
-        else:
-            # last line of conjugation reached
+        else: # last line of conjugation reached
             output_rec(cnt, conjug, f_out)
             ln_nr = 0
             conjug = []
